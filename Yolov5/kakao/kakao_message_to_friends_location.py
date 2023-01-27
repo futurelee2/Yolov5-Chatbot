@@ -6,6 +6,7 @@ import os
 from Yolov5.kakao import kakao_utils_friends
 import glob
 
+
 def send_message_to_friends():
     # KAKAO_TOKEN_FILENAME = "./kakao_code.json"  # "<kakao_token.json 파일이 있는 경로를 입력하세요.>"
     KAKAO_TOKEN_FILENAME = "./Yolov5/kakao/kakao_code.json"  # "<kakao_token.json 파일이 있는 경로를 입력하세요.>"
@@ -61,5 +62,6 @@ def send_message_to_friends():
 
     response = requests.post(send_url, headers=headers, data=template)
     response.status_code
-    backup_filename = glob.glob('D:/asdf/work/python/yolov5-chatbot/Yolov5/kakao/kakao_code.json.*')
-    os.remove(backup_filename)
+    # 파일 지우기
+    file_remove = glob.glob('./kakao_code.json.*')
+    os.remove(file_remove)

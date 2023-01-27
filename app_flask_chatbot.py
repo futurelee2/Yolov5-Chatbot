@@ -17,10 +17,12 @@ def hello():
     return render_template("chatbot.html")
 
 @app.route('/res', methods=['POST'])
-def ajax():
+def kakao_chatbot():
     data = request.get_json()
     text = data['messageText']
-    global stopwords
+
+    # 부정적 단어 3번 이상 사용 시, 지인에게 카톡 메세지 전달
+    global ultra_negative_words
     global count
     for i in range(len(ultra_negative_words)):
         if ultra_negative_words[i] in text:
@@ -29,6 +31,7 @@ def ajax():
             if count >= 3:
                 kakao.send_message_to_friends()
                 count = 0
+
     print(data)
     print(type(data),data['messageText'])
     answer = ch_kogpt2.predict(data['messageText'])
