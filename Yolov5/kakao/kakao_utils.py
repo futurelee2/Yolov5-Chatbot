@@ -7,6 +7,7 @@ import requests
 
 # 저장하는 함수
 def save_tokens(filename, tokens):
+    filename = './kakao_code.json'
     with open(filename, "w") as fp:
         json.dump(tokens, fp)
 
